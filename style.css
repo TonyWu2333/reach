@@ -98,9 +98,7 @@ section h2 { font-size: clamp(36px, 5.4vw, 60px); }
 
 /* ---------- Manifesto ---------- */
 .manifesto { padding: 140px 0 120px; }
-.manifesto .wrap { position: relative; }
-.m-octo { position: absolute; right: 24px; top: 0; width: 170px; height: auto; filter: drop-shadow(0 16px 20px rgba(110, 86, 230, .18)); }
-.m-text { max-width: 19em; font-size: clamp(24px, 3.3vw, 38px); line-height: 1.5; font-weight: 650; letter-spacing: -.005em; color: var(--text-3); }
+.m-text { max-width: 21em; font-size: clamp(24px, 3.3vw, 38px); line-height: 1.5; font-weight: 650; letter-spacing: -.005em; color: var(--text-3); }
 .m-text strong { color: var(--text); font-weight: 650; }
 .m-text p + p { margin-top: .8em; }
 .m-foot { display: flex; align-items: center; gap: 40px; margin-top: 48px; flex-wrap: wrap; }
@@ -216,8 +214,7 @@ section h2 { font-size: clamp(36px, 5.4vw, 60px); }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nav-links { display: none; }
-  .m-octo { display: none; }
-  .m-text { max-width: none; }
+    .m-text { max-width: none; }
   .nav-in { justify-content: space-between; }
   .principles { grid-template-columns: repeat(2, 1fr); gap: 40px 28px; }
   .features { grid-template-columns: repeat(2, 1fr); }
@@ -261,3 +258,4 @@ section h2 { font-size: clamp(36px, 5.4vw, 60px); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal, .term-body p, .term-body pre { opacity: 1; transform: none; }
 }
+.nw { white-space: nowrap; }
