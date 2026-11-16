@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>可及 · 触手可及</title>
+<meta name="description" content="可及（Reach）是一组开源的小工具 App：清单、收藏、协作、知识库、Skill、工作流……每一个都能通过一个 skill 接入你正在用的 AI agent。">
+<meta property="og:title" content="可及 · 触手可及">
+<meta property="og:description" content="一组能被你的 AI agent 直接使用的开源工具 App。第一款：可及清单。">
+<meta property="og:image" content="assets/list-hero.jpg">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0B0E" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon-64.png?v=2" type="image/png" sizes="64x64">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Mascot + family icons. Every icon: pastel object, lavender octopus peeking over its top-right corner. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2D5FF"/><stop offset="1" stop-color="#9A72F6"/></linearGradient>
+    <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6DCFF"/><stop offset="1" stop-color="#5893F4"/></linearGradient>
+    <symbol id="i-skill" viewBox="0 0 120 120">
+      <ellipse cx="56" cy="102" rx="26" ry="4" fill="#8B5CF6" opacity=".18"/>
+      <rect x="28" y="40" width="56" height="56" rx="18" fill="url(#g-violet)"/>
+      <rect x="35" y="47" width="42" height="42" rx="13" fill="#F6F1FF" opacity=".55"/>
+      <path d="M59 50 45 71h11l-3 15 15-22H57z" fill="#fff" stroke="#8B5CF6" stroke-width="3" stroke-linejoin="round"/>
+      <image href="assets/octo-front.png" x="59" y="6" width="44" height="43"/>
+    </symbol>
+    <symbol id="i-flow" viewBox="0 0 120 120">
+      <ellipse cx="56" cy="102" rx="28" ry="4" fill="#3B82F6" opacity=".18"/>
+      <path d="M42 60v12a8 8 0 0 0 8 8h6" fill="none" stroke="#9CC2FF" stroke-width="7" stroke-linecap="round"/>
+      <rect x="27" y="40" width="32" height="24" rx="8" fill="url(#g-blue)"/>
+      <rect x="54" y="70" width="32" height="24" rx="8" fill="url(#g-blue)"/>
+      <rect x="33" y="47" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
+      <rect x="60" y="77" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
+      <image href="assets/octo-front.png" x="52" y="6" width="40" height="39"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="可及首页">
+      <img class="brand-octo" src="assets/octo-128.png" alt="" width="28" height="27">
+      <span>可及</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#list">可及清单</a>
+      <a href="#agent">接入 Agent</a>
+      <a href="#family">系列</a>
+      <a href="#changelog">更新日志</a>
+    </nav>
+    <a class="nav-gh" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="wrap">
+    <h1>触手可及</h1>
+    <p class="hero-sub">一组开源的小工具 App，<br>每一个都能被你的 AI agent 直接使用。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#list">了解可及清单</a>
+      <a class="btn btn-text" href="#agent">看看怎么接入 agent <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="stage" id="stage" aria-label="你的 agent 通过触手连接可及系列的各个 App">
+    <svg class="arms" id="arms" aria-hidden="true"></svg>
+    <div class="core">
+      <img class="octo" src="assets/octo-front.png" alt="">
+      <span class="core-label">你的 Agent</span>
+    </div>
+    <a class="orb live" href="#list" style="--a:180deg; --c:#4B5CF0"><span class="icon"><img src="assets/list-icon.png" alt=""></span><b>清单</b></a>
+    <a class="orb" href="#family"    style="--a:240deg; --c:#9B87F5"><span class="icon"><img src="assets/saved-icon.png" alt=""></span><b>收藏</b></a>
+    <a class="orb" href="#family"    style="--a:300deg; --c:#9B87F5"><span class="icon"><img src="assets/team-icon.png" alt=""></span><b>协作</b></a>
+    <a class="orb" href="#family"    style="--a:0deg; --c:#9B87F5"><span class="icon"><img src="assets/notes-icon.png" alt=""></span><b>知识库</b></a>
+    <a class="orb" href="#family"    style="--a:60deg; --c:#8B5CF6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span><b>Skill</b></a>
+    <a class="orb" href="#family"    style="--a:120deg; --c:#3B82F6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span><b>工作流</b></a>
+  </div>
+</section>
+
+<!-- ============ Manifesto ============ -->
+<section class="manifesto" id="story">
+  <div class="wrap">
+    <img class="m-octo" src="assets/octo-side.png" alt="" loading="lazy">
+    <p class="m-text">我想做一组小工具。<strong>每一个都能单独用，也都能通过一个 skill 接上你正在用的 agent，</strong>让它跨 App 帮你查、帮你改。这些 App 就像 agent 伸出去的一只只触手，所以这个系列叫<strong>可及</strong>，取「触手可及」。</p>
+    <div class="m-foot">
+      <div class="m-author">
+        <img src="https://github.com/TonyWu2333.png?size=96" alt="" width="44" height="44" loading="lazy">
+        <div><b>Tony Wu</b><span>可及作者 · 2026 年 11 月</span></div>
+      </div>
+      <p class="m-note">第一款是可及清单。每次更新都会写更新日志，开发过程中随时欢迎提意见，代码全部开源。</p>
+    </div>
+
+    <div class="principles">
+      <div><span>01</span><h3>一件事，做好</h3><p>每个 App 只管一件事，能单独使用，不做大而全。</p></div>
+      <div><span>02</span><h3>Agent 可用</h3><p>人能点的操作，agent 都有对应命令。说法一样，结果一样。</p></div>
+      <div><span>03</span><h3>数据是你的</h3><p>离线可用，同步到你自己的服务器，随时导出为 JSON。</p></div>
+      <div><span>04</span><h3>开源</h3><p>代码全部公开，开发全程公开，欢迎一起改。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Reach List ============ -->
+<section class="product" id="list">
+  <div class="wrap">
+    <div class="product-head">
+      <img class="product-icon" src="assets/list-icon.png" alt="可及清单图标" width="112" height="112">
+      <p class="product-name">可及清单 <span>Reach List</span></p>
+      <h2>打开，看今天，<br>点一下，完事。</h2>
+      <p class="lead">农历日历、四象限、打卡、一句话添加。轻快好看的日程 App，你的 agent 也能直接看和改你的任务。</p>
+      <div class="product-cta">
+        <a class="btn btn-primary" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">查看源码</a>
+        <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist#-安装" target="_blank" rel="noopener">安装说明 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap wide">
+    <figure class="screens"><img src="assets/list-hero.jpg" alt="可及清单界面：日历、四象限、打卡、快速添加" loading="lazy"></figure>
+  </div>
+
+  <div class="wrap">
+    <div class="features">
+      <div>
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+        <h3>贴合国内的日历</h3><p>月视图直接显示农历、节气和节日，法定节假日标「休」，调休标「班」。</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>
+        <h3>四象限</h3><p>每个任务都能放进「重要 × 紧急」四象限，长按拖动就能调整优先级。</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M4 17.5V20h2.5L18 8.5 15.5 6z"/><path d="M14 7.5 16.5 10"/></svg>
+        <h3>一句话添加</h3><p>输入「明天下午3点开会」就是明天 15:00；「每周五晚上8点 羽毛球」就是每周重复。</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3-6.2"/><path d="m9 11.5 3 3 8-8.5"/></svg>
+        <h3>打卡</h3><p>重复任务集中在一页，按规则分组，带进度环和连续天数。</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+        <h3>子任务与提醒</h3><p>子任务也是完整的任务；本地精确提醒，提前排好未来 30 天。</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+        <h3>手势与撤销</h3><p>右滑完成，左滑推迟、放弃或删除，误操作随时撤销。</p>
+      </div>
+    </div>
+    <p class="specs">Android&nbsp;·&nbsp;iOS 26+ 原生版开发中&nbsp;·&nbsp;中文 / English&nbsp;·&nbsp;数据存在你的手机里</p>
+  </div>
+</section>
+
+<!-- ============ Agent ============ -->
+<section class="agent" id="agent">
+  <div class="wrap">
+    <div class="agent-head">
+      <h2>跟 agent 说一句，<br>手机上就变了。</h2>
+      <p class="lead">每个可及 App 都自带同步服务、命令行和 SKILL.md。Claude Code、Codex、Hermes 装上 skill，就能读写你手机上的同一份数据。</p>
+    </div>
+
+    <div class="term" role="img" aria-label="和 agent 对话的示例">
+      <div class="term-bar"><i></i><i></i><i></i><span>~ · claude</span></div>
+      <div class="term-body">
+        <p class="t-user">我今天有什么事？</p>
+        <p class="t-tool">planner today</p>
+        <pre class="t-out">[ ] 07:00 晨跑 5 公里  (每天)  #a1b2
+[ ] 10:00 产品周会  (重要且紧急)  #c3d4
+[ ] 15:30 review 设计稿  (重要不紧急)  #e5f6
+[ ] 续费域名  (已过期 · 昨天)  #0a1b</pre>
+        <p class="t-ai">今天有 3 件事，另外「续费域名」昨天过期了，要挪到今天吗？</p>
+        <p class="t-user">挪到今天下午 4 点，再加个每周五晚上 8 点打羽毛球</p>
+        <p class="t-tool">planner edit 0a1b --date 今天 --time 16:00</p>
+        <p class="t-tool">planner add 每周五晚上8点 羽毛球</p>
+        <p class="t-ai">好了。「续费域名」改到今天 16:00；新增「羽毛球」，每周五 20:00 重复。<span class="caret"></span></p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <span class="step-n">1</span>
+        <h3>运行同步服务器</h3>
+        <p>单文件、零依赖的 Node 服务，数据就是一个 JSON 文件。启动后打印一个连接码。</p>
+        <code>node planner-server.mjs</code>
+      </li>
+      <li>
+        <span class="step-n">2</span>
+        <h3>手机粘贴连接码</h3>
+        <p>在 App 的「我的 → 同步与 Agent」里打开开关，粘贴连接码。</p>
+        <code>http://主机:端口#令牌</code>
+      </li>
+      <li>
+        <span class="step-n">3</span>
+        <h3>把 skill 装给 agent</h3>
+        <p>把 skill 文件夹放进 agent 的 skills 目录，登录一次就好。</p>
+        <code>~/.claude/skills/planner</code>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ Family ============ -->
+<section class="family" id="family">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2>一只章鱼，很多只手。</h2>
+      <p class="lead">每个 App 有自己的颜色，图标上趴着同一只小章鱼。第一款已经发布，其余的正在路上。</p>
+    </div>
+
+    <div class="lineup">
+      <a class="lu live" href="#list">
+        <span class="icon"><img src="assets/list-icon.png" alt=""></span>
+        <h3>可及清单</h3>
+        <p>日程、四象限与打卡</p>
+        <span class="status on">已发布 · v0.12.0</span>
+      </a>
+      <div class="lu">
+        <span class="icon"><img src="assets/saved-icon.png" alt=""></span>
+        <h3>可及收藏</h3>
+        <p>链接、文章和灵感，让 agent 帮你找回来</p>
+        <span class="status">规划中</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><img src="assets/team-icon.png" alt=""></span>
+        <h3>可及协作</h3>
+        <p>几个人一起推进的任务板</p>
+        <span class="status">规划中</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><img src="assets/notes-icon.png" alt=""></span>
+        <h3>可及知识库</h3>
+        <p>笔记和资料放在一处，agent 查得到、引用得准</p>
+        <span class="status">规划中</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span>
+        <h3>可及 Skill</h3>
+        <p>管理装给 agent 的 skill，多台机器一处看全</p>
+        <span class="status">规划中</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span>
+        <h3>可及工作流</h3>
+        <p>把重复的步骤串成流程，agent 负责跑</p>
+        <span class="status">规划中</span>
+      </div>
+    </div>
+    <p class="more">还在想：可及邮箱、可及人脉、可及财务……想要哪一个？<a href="https://github.com/TonyWu2333/reachlist/issues" target="_blank" rel="noopener">告诉我</a></p>
+  </div>
+</section>
+
+<!-- ============ Changelog ============ -->
+<section class="changelog" id="changelog">
+  <div class="wrap log-grid">
+    <div class="log-side">
+      <h2>更新日志</h2>
+      <p>边做边发，每次更新都记在这里。</p>
+      <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist/commits/main" target="_blank" rel="noopener">全部提交 <span aria-hidden="true">↗</span></a>
+    </div>
+    <ol class="log">
+      <li><time>11月15日</time><div><h3>iOS 原生版 <em>可及清单</em></h3><p>用 Swift 和 SwiftUI 重写，覆盖日历、四象限、打卡、搜索和快速添加，数据格式与安卓版逐字对齐。在 <code>ios-native</code> 分支维护。</p></div></li>
+      <li><time>11月13日</time><div><h3>v0.12.0 · 英文界面 <em>可及清单</em></h3><p>跟随系统语言，也可以在「我的 → 语言」里切换。</p></div></li>
+      <li><time>11月13日</time><div><h3>v0.11.0 · 改名「可及清单」 <em>可及清单</em></h3><p>原名「每日计划」。换上带小章鱼的新图标，写好了整个可及系列的设计规范。</p></div></li>
+      <li class="key"><time>11月13日</time><div><h3>v0.10.1 · 接入 AI agent <em>可及清单</em></h3><p>自建同步服务器 + 可安装的 skill，Claude Code、Codex、Hermes 都能读取、添加和完成你的任务。这是可及系列的起点。</p></div></li>
+      <li><time>11月12日</time><div><h3>v0.7 – v0.9 · 打卡与灵活重复 <em>可及清单</em></h3><p>新增打卡页；重复规则支持每 N 天 / 周 / 月 / 年、指定星期几和结束日期；新增「放弃」状态；子任务；底部弹窗和键盘逐帧同步。</p></div></li>
+      <li><time>11月11日</time><div><h3>v0.4 · 提醒与搜索 <em>可及清单</em></h3><p>本地通知提醒、标题和备注搜索、正式版签名。</p></div></li>
+      <li><time>11月11日</time><div><h3>第一版 <em>可及清单</em></h3><p>日历、四象限、重复任务。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="join">
+  <div class="wrap">
+    <img class="join-octo" src="assets/octo-front.png" alt="" loading="lazy">
+    <h2>一起把它做好。</h2>
+    <p class="lead">想要什么功能、哪里不好用，都可以直接说。<br>也可以发邮件到 <a class="mail" href="mailto:tonywu.vip@outlook.com">tonywu.vip@outlook.com</a></p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/TonyWu2333/reachlist/issues/new" target="_blank" rel="noopener">提意见</a>
+      <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">在 GitHub 上 Star <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">
+          <img class="brand-octo" src="assets/octo-128.png" alt="" width="28" height="27">
+          <span>可及 Reach</span>
+        </span>
+        <p>触手可及：你够得着，你的 agent 也够得着。</p>
+      </div>
+      <div class="foot-col">
+        <h4>产品</h4>
+        <a href="#list">可及清单</a>
+        <a href="#family">系列路线</a>
+        <a href="#changelog">更新日志</a>
+      </div>
+      <div class="foot-col">
+        <h4>开源</h4>
+        <a href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub 仓库</a>
+        <a href="https://github.com/TonyWu2333/reachlist/issues" target="_blank" rel="noopener">提意见</a>
+        <a href="https://github.com/TonyWu2333/reachlist/blob/main/docs/DESIGN.md" target="_blank" rel="noopener">设计规范</a>
+      </div>
+      <div class="foot-col">
+        <h4>联系</h4>
+        <a href="mailto:tonywu.vip@outlook.com">tonywu.vip@outlook.com</a>
+      </div>
+    </div>
+    <p class="foot-copy">© 2026 Tony Wu</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
