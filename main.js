@@ -60,7 +60,7 @@ const term = document.querySelector('.term-body');
 [...term.children].forEach((el, i) => (el.style.transitionDelay = `${0.2 + i * 0.4}s`));
 
 const targets = document.querySelectorAll(
-  '.m-text, .m-foot, .principles > div, .product-head, .screens, .features > div, .agent-head, .steps li, .section-head, .lu, .log li'
+  '.m-foot, .principles > div, .product-head, .screens, .features > div, .agent-head, .steps li, .section-head, .lu, .log li'
 );
 targets.forEach((el) => el.classList.add('reveal'));
 
@@ -76,3 +76,44 @@ const io = new IntersectionObserver(
 );
 targets.forEach((el) => io.observe(el));
 io.observe(term);
+
+// Manifesto: characters go from faint to full as the paragraph scrolls through the viewport.
+const manifesto = document.querySelector('.m-text');
+const chars = [];
+(function wrap(node) {
+  for (const n of [...node.childNodes]) {
+    if (n.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      for (const ch of n.textContent) {
+        if (/\s/.test(ch)) { frag.append(ch); continue; }
+        const s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = ch;
+        chars.push(s);
+        frag.append(s);
+      }
+      n.replaceWith(frag);
+    } else wrap(n);
+  }
+})(manifesto);
+
+let lit = -1;
+function paintManifesto() {
+  const r = manifesto.getBoundingClientRect();
+  const vh = innerHeight;
+  const p = still ? 1 : Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height + vh * 0.25)));
+  const n = Math.round(p * chars.length);
+  if (n === lit) return;
+  chars.forEach((c, i) => c.classList.toggle('lit', i < n));
+  lit = n;
+}
+addEventListener('scroll', paintManifesto, { passive: true });
+addEventListener('resize', paintManifesto);
+paintManifesto();
+
+// Remember an explicit language choice so the auto-redirect in <head> respects it.
+document.querySelectorAll('.nav-lang').forEach((a) =>
+  a.addEventListener('click', () => {
+    try { localStorage.setItem('reach-lang', a.dataset.lang); } catch (e) {}
+  })
+);

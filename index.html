@@ -13,7 +13,19 @@
 <link rel="icon" href="assets/favicon-64.png?v=2" type="image/png" sizes="64x64">
 <link rel="icon" href="favicon.ico?v=2" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="style.css">
+<script>
+(function () {
+  if (/bot|crawl|spider|slurp|bing|baidu|yandex|duckduck/i.test(navigator.userAgent) || navigator.webdriver) return;
+  var pref = null;
+  try { pref = localStorage.getItem('reach-lang'); } catch (e) {}
+  var first = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+  var want = pref || (/^zh/i.test(first) ? 'zh' : 'en');
+  if (want !== 'zh') location.replace('en/' + location.hash);
+})();
+</script>
+<link rel="alternate" hreflang="zh-CN" href="./">
+<link rel="alternate" hreflang="en" href="en/">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 
@@ -53,7 +65,10 @@
       <a href="#family">系列</a>
       <a href="#changelog">更新日志</a>
     </nav>
-    <a class="nav-gh" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    <div class="nav-end">
+      <a class="nav-lang" data-lang="en" href="en/" hreflang="en" lang="en">EN</a>
+      <a class="nav-gh" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
 </header>
 
@@ -90,22 +105,23 @@
   <div class="wrap">
     <div class="m-text">
       <p>AI 已经学会了思考，却还碰不到你的生活。你的日程、收藏和笔记，散落在一个个互不相通的 App 里，它看不见，也够不着。</p>
-      <p><strong>可及想做的，是给 agent 长出手。</strong>每一个可及 App 都是一只触手，伸进生活的一个角落；所有触手都连回同一个大脑，也就是你正在用的那个 agent。</p>
-      <p>我们相信，好的工具应该让能力触手可及，而不是把人困在原地。<strong><span class="nw">人、agent 与工具之间，</span><span class="nw">不再有墙。</span></strong></p>
+      <p>可及想做的，是给 agent 长出手。每一个可及 App 都是一只触手，伸进生活的一个角落；所有触手都连回同一个大脑，也就是你正在用的那个 agent。</p>
+      <p>这也是「可及」<span class="nw">这个名字的由来：</span><span class="key nw">触手可及</span>。</p>
+      <p>我们相信，好的工具应该让能力伸手可得，而不是把人困在原地。<span class="nw">人、agent 与工具之间，</span><span class="nw">不再有墙。</span></p>
     </div>
     <div class="m-foot">
       <div class="m-author">
         <img src="https://github.com/TonyWu2333.png?size=96" alt="" width="44" height="44" loading="lazy">
         <div><b>Tony Wu</b><span>可及作者 · 2026 年 11 月</span></div>
       </div>
-      <p class="m-note">第一款是可及清单。每次更新都会写更新日志，开发过程中随时欢迎提意见，代码全部开源。</p>
+      <p class="m-note">可及清单是伸出去的第一只手。每一次更新都会写进更新日志，开发全程公开，代码全部开源。</p>
     </div>
 
     <div class="principles">
-      <div><span>01</span><h3>一件事，做好</h3><p>每个 App 只管一件事，能单独使用，不做大而全。</p></div>
-      <div><span>02</span><h3>Agent 可用</h3><p>人能点的操作，agent 都有对应命令。说法一样，结果一样。</p></div>
-      <div><span>03</span><h3>数据是你的</h3><p>离线可用，同步到你自己的服务器，随时导出为 JSON。</p></div>
-      <div><span>04</span><h3>开源</h3><p>代码全部公开，开发全程公开，欢迎一起改。</p></div>
+      <div><span>01</span><h3>一件事，做到极致</h3><p>每一只触手只握住一件事。握得稳，才伸得远。</p></div>
+      <div><span>02</span><h3>为 agent 而生</h3><p>你能点的每一个按钮，agent 都有对应的命令。同样的话，同样的结果。</p></div>
+      <div><span>03</span><h3>你的数据，只属于你</h3><p>离线可用，同步到你自己的服务器，随时整份带走。没有墙，也没有锁。</p></div>
+      <div><span>04</span><h3>公开地建造</h3><p>代码开源，过程公开，每一步都摊开在这里。欢迎一起动手。</p></div>
     </div>
   </div>
 </section>
@@ -282,8 +298,8 @@
 <section class="join">
   <div class="wrap">
     <img class="join-octo" src="assets/octo-front.png" alt="" loading="lazy">
-    <h2>一起把它做好。</h2>
-    <p class="lead">想要什么功能、哪里不好用，都可以直接说。<br>也可以发邮件到 <a class="mail" href="mailto:tonywu.vip@outlook.com">tonywu.vip@outlook.com</a></p>
+    <h2>这只是第一只手。</h2>
+    <p class="lead">还有很多地方，等着被够到。想要什么、哪里不好用，都欢迎直接说；代码开源，也欢迎一起动手。</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://github.com/TonyWu2333/reachlist/issues/new" target="_blank" rel="noopener">提意见</a>
       <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">在 GitHub 上 Star <span aria-hidden="true">↗</span></a>
@@ -324,6 +340,6 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=6"></script>
 </body>
 </html>

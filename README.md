@@ -6,11 +6,12 @@ Plain static files, no build step:
 
 | File | What |
 |---|---|
-| `index.html` | All content: hero, story, product family, agent setup, Reach List, changelog |
+| `index.html` | Chinese page: hero, story, Reach List, agent setup, product family, changelog |
+| `en/index.html` | English page, same layout; shares the CSS, JS and assets |
 | `style.css` | Tokens follow `reachlist/docs/DESIGN.md` (light + dark) |
 | `main.js` | Draws the hero tentacles, scroll reveals, plays the agent chat demo |
 | `assets/` | Octopus favicon, Reach List icon and screenshots (resized from the reachlist repo) |
 
 Preview locally: `python3 -m http.server 4321`. Deploy: any static host (GitHub Pages works as-is).
 
-To add a changelog entry, copy an `<li>` at the top of `<ol class="log">` in `index.html`.
+To add a changelog entry, copy an `<li>` at the top of `<ol class="log">` in both `index.html` and `en/index.html`. After changing `style.css` or `main.js`, bump the `?v=` number on their links in both pages.

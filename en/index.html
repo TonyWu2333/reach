@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reach · Within reach</title>
+<meta name="description" content="Reach (可及) is a family of small, open-source apps — list, saved, team, notes, skills, flows — each one usable by the AI agent you already run, through a single skill.">
+<meta property="og:title" content="Reach · Within reach">
+<meta property="og:description" content="Open-source apps your AI agent can use. The first one: Reach List.">
+<meta property="og:image" content="../assets/list-hero-en.jpg">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0B0E" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon-64.png?v=2" type="image/png" sizes="64x64">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<script>
+(function () {
+  if (/bot|crawl|spider|slurp|bing|baidu|yandex|duckduck/i.test(navigator.userAgent) || navigator.webdriver) return;
+  var pref = null;
+  try { pref = localStorage.getItem('reach-lang'); } catch (e) {}
+  var first = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+  var want = pref || (/^zh/i.test(first) ? 'zh' : 'en');
+  if (want !== 'en') location.replace('../' + location.hash);
+})();
+</script>
+<link rel="alternate" hreflang="zh-CN" href="../">
+<link rel="alternate" hreflang="en" href="./">
+<link rel="stylesheet" href="../style.css?v=14">
+</head>
+<body>
+
+<!-- Mascot + family icons. Every icon: pastel object, lavender octopus peeking over its top-right corner. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2D5FF"/><stop offset="1" stop-color="#9A72F6"/></linearGradient>
+    <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6DCFF"/><stop offset="1" stop-color="#5893F4"/></linearGradient>
+    <symbol id="i-skill" viewBox="0 0 120 120">
+      <ellipse cx="56" cy="102" rx="26" ry="4" fill="#8B5CF6" opacity=".18"/>
+      <rect x="28" y="40" width="56" height="56" rx="18" fill="url(#g-violet)"/>
+      <rect x="35" y="47" width="42" height="42" rx="13" fill="#F6F1FF" opacity=".55"/>
+      <path d="M59 50 45 71h11l-3 15 15-22H57z" fill="#fff" stroke="#8B5CF6" stroke-width="3" stroke-linejoin="round"/>
+      <image href="../assets/octo-front.png" x="59" y="6" width="44" height="43"/>
+    </symbol>
+    <symbol id="i-flow" viewBox="0 0 120 120">
+      <ellipse cx="56" cy="102" rx="28" ry="4" fill="#3B82F6" opacity=".18"/>
+      <path d="M42 60v12a8 8 0 0 0 8 8h6" fill="none" stroke="#9CC2FF" stroke-width="7" stroke-linecap="round"/>
+      <rect x="27" y="40" width="32" height="24" rx="8" fill="url(#g-blue)"/>
+      <rect x="54" y="70" width="32" height="24" rx="8" fill="url(#g-blue)"/>
+      <rect x="33" y="47" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
+      <rect x="60" y="77" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
+      <image href="../assets/octo-front.png" x="52" y="6" width="40" height="39"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Reach home">
+      <img class="brand-octo" src="../assets/octo-128.png" alt="" width="28" height="27">
+      <span>Reach</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#list">Reach List</a>
+      <a href="#agent">Agents</a>
+      <a href="#family">Family</a>
+      <a href="#changelog">Changelog</a>
+    </nav>
+    <div class="nav-end">
+      <a class="nav-lang" data-lang="zh" href="../" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <a class="nav-gh" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Within reach</h1>
+    <p class="hero-sub">Give your agent a pair of hands<br>that reach into your life.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#list">Meet Reach List</a>
+      <a class="btn btn-text" href="#agent">See how agents connect <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="stage" id="stage" aria-label="Your agent reaches every Reach app">
+    <svg class="arms" id="arms" aria-hidden="true"></svg>
+    <div class="core">
+      <img class="octo" src="../assets/octo-front.png" alt="">
+      <span class="core-label">Your agent</span>
+    </div>
+    <a class="orb live" href="#list" style="--a:180deg; --c:#4B5CF0"><span class="icon"><img src="../assets/list-icon.png" alt=""></span><b>List</b></a>
+    <a class="orb" href="#family"    style="--a:240deg; --c:#9B87F5"><span class="icon"><img src="../assets/saved-icon.png" alt=""></span><b>Saved</b></a>
+    <a class="orb" href="#family"    style="--a:300deg; --c:#9B87F5"><span class="icon"><img src="../assets/team-icon.png" alt=""></span><b>Team</b></a>
+    <a class="orb" href="#family"    style="--a:0deg; --c:#9B87F5"><span class="icon"><img src="../assets/notes-icon.png" alt=""></span><b>Notes</b></a>
+    <a class="orb" href="#family"    style="--a:60deg; --c:#8B5CF6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span><b>Skill</b></a>
+    <a class="orb" href="#family"    style="--a:120deg; --c:#3B82F6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span><b>Flow</b></a>
+  </div>
+</section>
+
+<!-- ============ Manifesto ============ -->
+<section class="manifesto" id="story">
+  <div class="wrap">
+    <div class="m-text">
+      <p>AI has learned to think, but it still can't touch your life. Your schedule, your saved links and your notes sit scattered across apps that don't talk to each other. Your agent can't see them, and it can't reach them.</p>
+      <p>Reach gives your agent hands. Every Reach app is a tentacle that reaches into one corner of your life, and every tentacle connects back to the same brain: the agent you already use.</p>
+      <p>That's where the name comes from. In Chinese, Reach is 可及, from <span class="nw">触手可及:</span> <span class="key nw">within reach.</span></p>
+      <p>We believe good tools should put what you can do at hand, not keep you stuck where you are. Between people, agents and tools, <span class="nw">no more walls.</span></p>
+    </div>
+    <div class="m-foot">
+      <div class="m-author">
+        <img src="https://github.com/TonyWu2333.png?size=96" alt="" width="44" height="44" loading="lazy">
+        <div><b>Tony Wu</b><span>Creator of Reach · November 2026</span></div>
+      </div>
+      <p class="m-note">Reach List is the first hand we've reached out. Every update goes into the changelog, the whole process happens in the open, and all of the code is open source.</p>
+    </div>
+
+    <div class="principles">
+      <div><span>01</span><h3>One thing, done brilliantly</h3><p>Each tentacle holds on to one thing. A firm grip is what lets it reach far.</p></div>
+      <div><span>02</span><h3>Made for agents</h3><p>Every button you can tap has a command your agent can run. Same words, same result.</p></div>
+      <div><span>03</span><h3>Your data is yours</h3><p>Works offline, syncs to your own server, and leaves with you whenever you like. No walls, no locks.</p></div>
+      <div><span>04</span><h3>Built in the open</h3><p>Open code, open process, every step laid out here. Come build it with us.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Reach List ============ -->
+<section class="product" id="list">
+  <div class="wrap">
+    <div class="product-head">
+      <img class="product-icon" src="../assets/list-icon.png" alt="Reach List icon" width="112" height="112">
+      <p class="product-name">Reach List <span>可及清单</span></p>
+      <h2>Open it. See today.<br>Tap. Done.</h2>
+      <p class="lead">A lunar calendar, an Eisenhower matrix, routines and one-line quick add. A light, good-looking planner, and your agent can read and edit your tasks too.</p>
+      <div class="product-cta">
+        <a class="btn btn-primary" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">View source</a>
+        <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist#-install" target="_blank" rel="noopener">How to install <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap wide">
+    <figure class="screens"><img src="../assets/list-hero-en.jpg" alt="Reach List screens: calendar, Eisenhower matrix, routines and quick add" loading="lazy"></figure>
+  </div>
+
+  <div class="wrap">
+    <div class="features">
+      <div>
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+        <h3>A calendar that knows Chinese holidays</h3><p>Lunar dates, solar terms and festivals right in the month view, with public holidays and make-up workdays marked.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>
+        <h3>Eisenhower matrix</h3><p>Put any task in a quadrant of important × urgent. Long-press and drag to change its priority.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M4 17.5V20h2.5L18 8.5 15.5 6z"/><path d="M14 7.5 16.5 10"/></svg>
+        <h3>One-line quick add</h3><p>Type “明天下午3点开会” and it's a meeting tomorrow at 15:00; “每周五晚上8点” repeats every Friday. Quick add understands Chinese for now.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3-6.2"/><path d="m9 11.5 3 3 8-8.5"/></svg>
+        <h3>Routines</h3><p>Every repeating task on one page, grouped by rule, with progress rings and streaks.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+        <h3>Subtasks and reminders</h3><p>Subtasks are full tasks. Exact local reminders, scheduled 30 days ahead.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+        <h3>Gestures and undo</h3><p>Swipe right to complete, left to postpone, drop or delete. Every slip can be undone.</p>
+      </div>
+    </div>
+    <p class="specs">Android&nbsp;·&nbsp;Native iOS 26+ in progress&nbsp;·&nbsp;English / 中文&nbsp;·&nbsp;Your data stays on your phone</p>
+  </div>
+</section>
+
+<!-- ============ Agent ============ -->
+<section class="agent" id="agent">
+  <div class="wrap">
+    <div class="agent-head">
+      <h2>Say it to your agent.<br>Watch your phone change.</h2>
+      <p class="lead">Every Reach app ships with a sync server, a command line and a SKILL.md. Install the skill in Claude Code, Codex or Hermes, and it reads and writes the same data as your phone.</p>
+    </div>
+
+    <div class="term" role="img" aria-label="Example conversation with an agent">
+      <div class="term-bar"><i></i><i></i><i></i><span>~ · claude</span></div>
+      <div class="term-body">
+        <p class="t-user">What's on my plate today?</p>
+        <p class="t-tool">planner today</p>
+        <pre class="t-out">[ ] 07:00 Morning run, 5 km  (daily)  #a1b2
+[ ] 10:00 Product weekly  (urgent &amp; important)  #c3d4
+[ ] 15:30 Review designs  (important)  #e5f6
+[ ] Renew domain  (overdue · yesterday)  #0a1b</pre>
+        <p class="t-ai">Three things today, and “Renew domain” was due yesterday. Move it to today?</p>
+        <p class="t-user">Move it to 4 pm today, and add badminton every Friday at 8 pm</p>
+        <p class="t-tool">planner edit 0a1b --date 2026-11-16 --time 16:00</p>
+        <p class="t-tool">planner add 每周五 Badminton --time 20:00</p>
+        <p class="t-ai">Done. “Renew domain” is now today at 16:00, and “Badminton” repeats every Friday at 20:00.<span class="caret"></span></p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <span class="step-n">1</span>
+        <h3>Run the sync server</h3>
+        <p>A single-file Node server with no dependencies; your data is one JSON file. It prints a connection code when it starts.</p>
+        <code>node planner-server.mjs</code>
+      </li>
+      <li>
+        <span class="step-n">2</span>
+        <h3>Paste the code on your phone</h3>
+        <p>Open sync settings in the app, switch it on and paste the connection code.</p>
+        <code>http://host:port#token</code>
+      </li>
+      <li>
+        <span class="step-n">3</span>
+        <h3>Give your agent the skill</h3>
+        <p>Drop the skill folder into your agent's skills directory and log in once.</p>
+        <code>~/.claude/skills/planner</code>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ Family ============ -->
+<section class="family" id="family">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2>One octopus, many hands.</h2>
+      <p class="lead">Each app does one job, and the same little octopus sits on every icon. The first one is out; the rest are on their way.</p>
+    </div>
+
+    <div class="lineup">
+      <a class="lu live" href="#list">
+        <span class="icon"><img src="../assets/list-icon.png" alt=""></span>
+        <h3>Reach List</h3>
+        <p>Planner, matrix and routines</p>
+        <span class="status on">Released · v0.12.0</span>
+      </a>
+      <div class="lu">
+        <span class="icon"><img src="../assets/saved-icon.png" alt=""></span>
+        <h3>Reach Saved</h3>
+        <p>Links, articles and ideas your agent can find again</p>
+        <span class="status">Planned</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><img src="../assets/team-icon.png" alt=""></span>
+        <h3>Reach Team</h3>
+        <p>A task board for a few people moving together</p>
+        <span class="status">Planned</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><img src="../assets/notes-icon.png" alt=""></span>
+        <h3>Reach Notes</h3>
+        <p>Notes and docs in one place, easy for your agent to find and cite</p>
+        <span class="status">Planned</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span>
+        <h3>Reach Skill</h3>
+        <p>Your agent's skills, managed across every machine</p>
+        <span class="status">Planned</span>
+      </div>
+      <div class="lu">
+        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span>
+        <h3>Reach Flow</h3>
+        <p>Chain repeated steps into a flow, and let your agent run it</p>
+        <span class="status">Planned</span>
+      </div>
+    </div>
+    <p class="more">Still on the drawing board: Reach Mail, Reach People, Reach Money… Want one? <a href="https://github.com/TonyWu2333/reachlist/issues" target="_blank" rel="noopener">Tell me</a></p>
+  </div>
+</section>
+
+<!-- ============ Changelog ============ -->
+<section class="changelog" id="changelog">
+  <div class="wrap log-grid">
+    <div class="log-side">
+      <h2>Changelog</h2>
+      <p>Shipping as I go. Every update lands here.</p>
+      <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist/commits/main" target="_blank" rel="noopener">All commits <span aria-hidden="true">↗</span></a>
+    </div>
+    <ol class="log">
+      <li><time>Nov 15</time><div><h3>Native iOS app <em>Reach List</em></h3><p>Rebuilt in Swift and SwiftUI: calendar, matrix, routines, search and quick add, with a data format that matches Android exactly. Maintained on the <code>ios-native</code> branch.</p></div></li>
+      <li><time>Nov 13</time><div><h3>v0.12.0 · English UI <em>Reach List</em></h3><p>Follows your system language, or pick one under Me → Language.</p></div></li>
+      <li><time>Nov 13</time><div><h3>v0.11.0 · Renamed to Reach List <em>Reach List</em></h3><p>Formerly “每日计划” (Daily Plan). A new icon with the octopus, and design guidelines for the whole Reach family.</p></div></li>
+      <li class="key"><time>Nov 13</time><div><h3>v0.10.1 · AI agents join in <em>Reach List</em></h3><p>A self-hosted sync server and an installable skill, so Claude Code, Codex and Hermes can read, add and complete your tasks. Where Reach began.</p></div></li>
+      <li><time>Nov 12</time><div><h3>v0.7 – v0.9 · Routines and flexible repeats <em>Reach List</em></h3><p>A routines page; repeats every N days, weeks, months or years, on chosen weekdays, with an end date; a “dropped” state; subtasks; sheets that move with the keyboard frame by frame.</p></div></li>
+      <li><time>Nov 11</time><div><h3>v0.4 · Reminders and search <em>Reach List</em></h3><p>Local reminders, search across titles and notes, signed release builds.</p></div></li>
+      <li><time>Nov 11</time><div><h3>First version <em>Reach List</em></h3><p>Calendar, Eisenhower matrix and repeating tasks.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="join">
+  <div class="wrap">
+    <img class="join-octo" src="../assets/octo-front.png" alt="" loading="lazy">
+    <h2>This is only the first hand.</h2>
+    <p class="lead">There's a lot left to reach. Tell me what you want and what doesn't work; it's open source, so you're welcome to build it with me, too.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/TonyWu2333/reachlist/issues/new" target="_blank" rel="noopener">Share feedback</a>
+      <a class="btn btn-text" href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">Star on GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">
+          <img class="brand-octo" src="../assets/octo-128.png" alt="" width="28" height="27">
+          <span>Reach 可及</span>
+        </span>
+        <p>Within reach, for you and for your agent.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#list">Reach List</a>
+        <a href="#family">Roadmap</a>
+        <a href="#changelog">Changelog</a>
+      </div>
+      <div class="foot-col">
+        <h4>Open source</h4>
+        <a href="https://github.com/TonyWu2333/reachlist" target="_blank" rel="noopener">GitHub repo</a>
+        <a href="https://github.com/TonyWu2333/reachlist/issues" target="_blank" rel="noopener">Feedback</a>
+        <a href="https://github.com/TonyWu2333/reachlist/blob/main/docs/DESIGN.md" target="_blank" rel="noopener">Design guidelines</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:tonywu.vip@outlook.com">tonywu.vip@outlook.com</a>
+      </div>
+    </div>
+    <p class="foot-copy">© 2026 Tony Wu</p>
+  </div>
+</footer>
+
+<script src="../main.js?v=6"></script>
+</body>
+</html>
