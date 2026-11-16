@@ -29,30 +29,6 @@
 </head>
 <body>
 
-<!-- Mascot + family icons. Every icon: pastel object, lavender octopus peeking over its top-right corner. -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2D5FF"/><stop offset="1" stop-color="#9A72F6"/></linearGradient>
-    <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6DCFF"/><stop offset="1" stop-color="#5893F4"/></linearGradient>
-    <symbol id="i-skill" viewBox="0 0 120 120">
-      <ellipse cx="56" cy="102" rx="26" ry="4" fill="#8B5CF6" opacity=".18"/>
-      <rect x="28" y="40" width="56" height="56" rx="18" fill="url(#g-violet)"/>
-      <rect x="35" y="47" width="42" height="42" rx="13" fill="#F6F1FF" opacity=".55"/>
-      <path d="M59 50 45 71h11l-3 15 15-22H57z" fill="#fff" stroke="#8B5CF6" stroke-width="3" stroke-linejoin="round"/>
-      <image href="assets/octo-front.png" x="59" y="6" width="44" height="43"/>
-    </symbol>
-    <symbol id="i-flow" viewBox="0 0 120 120">
-      <ellipse cx="56" cy="102" rx="28" ry="4" fill="#3B82F6" opacity=".18"/>
-      <path d="M42 60v12a8 8 0 0 0 8 8h6" fill="none" stroke="#9CC2FF" stroke-width="7" stroke-linecap="round"/>
-      <rect x="27" y="40" width="32" height="24" rx="8" fill="url(#g-blue)"/>
-      <rect x="54" y="70" width="32" height="24" rx="8" fill="url(#g-blue)"/>
-      <rect x="33" y="47" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
-      <rect x="60" y="77" width="14" height="5" rx="2.5" fill="#EFF6FF"/>
-      <image href="assets/octo-front.png" x="52" y="6" width="40" height="39"/>
-    </symbol>
-  </defs>
-</svg>
-
 <header class="nav" id="top">
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="可及首页">
@@ -95,8 +71,8 @@
     <a class="orb" href="#family"    style="--a:240deg; --c:#9B87F5"><span class="icon"><img src="assets/saved-icon.png" alt=""></span><b>收藏</b></a>
     <a class="orb" href="#family"    style="--a:300deg; --c:#9B87F5"><span class="icon"><img src="assets/team-icon.png" alt=""></span><b>协作</b></a>
     <a class="orb" href="#family"    style="--a:0deg; --c:#9B87F5"><span class="icon"><img src="assets/notes-icon.png" alt=""></span><b>知识库</b></a>
-    <a class="orb" href="#family"    style="--a:60deg; --c:#8B5CF6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span><b>Skill</b></a>
-    <a class="orb" href="#family"    style="--a:120deg; --c:#3B82F6"><span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span><b>工作流</b></a>
+    <a class="orb" href="#family"    style="--a:60deg; --c:#9B87F5"><span class="icon"><img src="assets/skill-icon.png" alt=""></span><b>Skill</b></a>
+    <a class="orb" href="#family"    style="--a:120deg; --c:#9B87F5"><span class="icon"><img src="assets/flow-icon.png" alt=""></span><b>工作流</b></a>
   </div>
 </section>
 
@@ -258,13 +234,13 @@
         <span class="status">规划中</span>
       </div>
       <div class="lu">
-        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-skill"/></svg></span>
+        <span class="icon"><img src="assets/skill-icon.png" alt=""></span>
         <h3>可及 Skill</h3>
         <p>管理装给 agent 的 skill，多台机器一处看全</p>
         <span class="status">规划中</span>
       </div>
       <div class="lu">
-        <span class="icon"><svg viewBox="0 0 120 120"><use href="#i-flow"/></svg></span>
+        <span class="icon"><img src="assets/flow-icon.png" alt=""></span>
         <h3>可及工作流</h3>
         <p>把重复的步骤串成流程，agent 负责跑</p>
         <span class="status">规划中</span>
