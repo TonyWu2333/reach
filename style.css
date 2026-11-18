@@ -72,6 +72,8 @@ section h2 { font-size: clamp(36px, 5.4vw, 60px); }
 .btn-text { padding: 0 6px; color: var(--accent); }
 .btn-text:hover span { transform: translateX(3px); }
 .btn-text span { display: inline-block; transition: transform .2s var(--ease); }
+.cta-meta { margin-top: 16px; font-size: 14px; color: var(--text-2); }
+.cta-meta a { color: var(--accent); }
 .hero-cta, .product-cta { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 22px; margin-top: 36px; }
 
 /* ---------- Hero ---------- */
